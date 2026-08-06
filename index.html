@@ -3,55 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaryan's Space ✦</title>
+    <title>Aaryan | Builder & Tinkerer ✦</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="card-container">
-        <!-- Header / Banner -->
+    <!-- Floating Background Clouds -->
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">☁️</div>
+    <div class="cloud cloud-4">☁️</div>
+
+    <div class="page-wrapper">
+        <!-- Header Section -->
         <header>
-            <div class="avatar-badge">(⸝⸝•̀֊•́⸝⸝)</div>
+            <div class="profile-frame">
+                <img src="avatar.jpg" alt="Aaryan's Avatar" class="tilted-img avatar-img">
+            </div>
             <h1>hey, i'm aaryan ✨</h1>
-            <p class="subtitle">welcome to my little corner of the web</p>
+            <p class="tagline">building at the intersection of microcontrollers, machine learning & design</p>
             
-            <nav>
-                <a href="#about" class="nav-btn">about</a>
-                <a href="#projects" class="nav-btn">projects</a>
-                <a href="#connect" class="nav-btn">connect</a>
+            <nav class="nav-bar">
+                <a href="#about" class="nav-chip">about</a>
+                <a href="#timeline" class="nav-chip">timeline</a>
+                <a href="#connect" class="nav-chip">connect</a>
             </nav>
         </header>
 
-        <!-- Main Content -->
-        <main>
-            <!-- About Section -->
-            <section id="about" class="section-box">
-                <h2><span>☁️</span> about me</h2>
-                <p>i'm a builder and tinkerer who loves turning cool ideas into code and hardware. when i'm not working on projects, you can usually find me building or experimenting with new tech!</p>
-            </section>
+        <!-- About Section -->
+        <section id="about" class="glass-card">
+            <h2><span>⚡</span> focus & drive</h2>
+            <p>i build tech projects designed to solve real hardware and software challenges—from customized pcb layouts to sensor-driven microcontrollers and dynamic logic.</p>
+        </section>
 
-            <!-- Projects Section -->
-            <section id="projects" class="section-box">
-                <h2><span>🛠️</span> what i'm building</h2>
-                <div class="project-card">
-                    <h3>personal website</h3>
-                    <p>my custom portfolio site built with pure html & css. hosted directly on github pages.</p>
-                </div>
-            </section>
+        <!-- TKS-style Interactive Timeline -->
+        <section id="timeline" class="glass-card">
+            <h2><span>🚀</span> journey & milestones</h2>
+            <div class="timeline">
 
-            <!-- Connect Section -->
-            <section id="connect" class="section-box">
-                <h2><span>📫</span> let's connect</h2>
-                <div class="links-group">
-                    <a href="https://www.linkedin.com/in/iamaaryanv" target="_blank" class="social-link">linkedin ↗</a>
-                    <a href="https://github.com/aaryanv-midnightcrown" target="_blank" class="social-link">github ↗</a>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2026</span>
+                        <h3>Wearable Bow Motion Sensing</h3>
+                        <p>Designed a low-profile, detachable motion-sensing hardware clip using the ESP32-C3 SuperMini and IMUs to capture expressive bowing gestures.</p>
+                    </div>
                 </div>
-            </section>
-        </main>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2026</span>
+                        <h3>Custom PCB Design</h3>
+                        <p>Engineered schematic logic and routed trace layouts in KiCad for custom multi-key controllers, optimizing signal paths and component placement.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3>Destination Imagination Global Finals</h3>
+                        <p>Competed globally, tackling high-level instant challenges with strict technical and creative constraints under timed conditions.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sky Art Highlight -->
+        <section class="glass-card art-section">
+            <h2><span>🌙</span> midnight aesthetic</h2>
+            <div class="sky-frame">
+                <img src="night-sky.jpg" alt="Pixel Art Moon" class="tilted-img sky-img">
+            </div>
+        </section>
+
+        <!-- Connect Section -->
+        <section id="connect" class="glass-card">
+            <h2><span>📫</span> let's connect</h2>
+            <div class="social-grid">
+                <a href="https://www.linkedin.com/in/iamaaryanv" target="_blank" class="social-btn">LinkedIn ↗</a>
+                <a href="https://github.com/aaryanv-midnightcrown" target="_blank" class="social-btn">GitHub ↗</a>
+            </div>
+        </section>
 
         <footer>
-            <p>crafted by aaryan • 2026</p>
+            <p>built by aaryan • 2026</p>
         </footer>
     </div>
 
