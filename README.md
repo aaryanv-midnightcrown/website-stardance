@@ -1,6 +1,6 @@
 # ✦ website-stardance
 
-My personal portfolio site built from scratch using HTML, CSS, and vanilla JavaScript. Designed with a custom day-to-night gradient theme, glassmorphism UI, and interactive animations.
+My personal portfolio site built from scratch using HTML, CSS, and vanilla JavaScript. Designed with a custom day-night gradient theme, glassmorphism UI, and interactive animations.
 
 👉 **Live Site:** https://aaryanv-midnightcrown.github.io/website-stardance/
 
@@ -8,21 +8,21 @@ My personal portfolio site built from scratch using HTML, CSS, and vanilla JavaS
 
 ## 🛠️ Tech Stack & Features
 
-- **Frontend:** Vanilla HTML5, CSS3, JavaScript (ES6)
-- **Design & Effects:** Vercel-inspired cursor tracking, CSS keyframe animations, IntersectionObserver scroll reveals, Glassmorphic UI
-- **Deployment:** GitHub Pages & Git workflow
+- **Frontend:** Vanilla HTML5, CSS3, JavaScript
+- **Design & Effects:** Vercel inspo cursor tracking, css keyframe animations, cool scroll reveals, and glassmorphic UI
+- **Deployment:** GitHub Pages & Git workflow overall
 
 ---
 
 ## 🚀 Features
 
-- **Dynamic Sky Theme:** Day-to-night gradient transition with animated background elements (birds, clouds, shooting stars).
-- **Interactive Cursor Glow:** Mouse-following spotlight effect built with lightweight JS.
+- **Dynamic Sky Theme:** Day-night gradient transition with nice animated background elements (clouds and shooting stars).
+- **Interactive Cursor Glow:** Mouse following spotlight effect built with lightweight JS.
 - **Tilted Media Cards:** Custom image cards with smooth 3D hover effects.
-- **Milestone Timeline:** Interactive timeline highlighting hardware, FTC robotics, and DI achievements.
+- **Milestone Timeline:** Interactive timeline showing hardware, FTC robotics, and DI achievements.
 
 ---
 
 ## 🤖 AI Disclosure
 
-This project was built with assistance from AI tools (Gemini) used primarily as a coding partner and design generator. AI helped accelerate CSS styling setup, syntax troubleshooting, and layout ideas, while all project content, structure choices, and implementation were manually configured and adapted by me.
+This project was built with assistance from AI tools (Gemini) used primarily as a debugging partner and design generator. gemini helped accelerate my css styling setup and syntax troubleshooting, while all project content, structure choices, and implementation were manually configured and used by me.
