@@ -9,15 +9,39 @@
 </head>
 <body>
 
-    <!-- Floating Background Clouds -->
+    <!-- Mouse-Interactive Mesh Grid & Glow -->
+    <div id="interactive-bg"></div>
+
+    <!-- Background Birds (Top Daylight Sky) -->
+    <div class="bird bird-1"><span>✦</span></div>
+    <div class="bird bird-2"><span>✦</span></div>
+    <div class="bird bird-3"><span>✦</span></div>
+
+    <!-- Background Clouds -->
     <div class="cloud cloud-1">☁️</div>
     <div class="cloud cloud-2">☁️</div>
     <div class="cloud cloud-3">☁️</div>
     <div class="cloud cloud-4">☁️</div>
 
+    <!-- Background Shooting Stars (Bottom Night Sky) -->
+    <div class="shooting-star star-1"></div>
+    <div class="shooting-star star-2"></div>
+    <div class="shooting-star star-3"></div>
+
+    <!-- Hero Screen (Full Screen Intro Page) -->
+    <section class="hero-screen">
+        <h1 class="hero-title">hi. i'm aaryan.</h1>
+        <p class="hero-subtitle">builder • tinkerer • hardware & software</p>
+        <div class="scroll-indicator">
+            <span>scroll to reveal</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
     <div class="page-wrapper">
         <!-- Header Section -->
-        <header>
+        <header class="reveal-on-scroll">
             <div class="profile-frame">
                 <img src="avatar.jpg" alt="Aaryan's Avatar" class="tilted-img avatar-img">
             </div>
@@ -32,13 +56,13 @@
         </header>
 
         <!-- About Section -->
-        <section id="about" class="glass-card">
+        <section id="about" class="glass-card reveal-on-scroll">
             <h2><span>⚡</span> focus & drive</h2>
             <p>i build tech projects designed to solve real hardware and software challenges—from customized pcb layouts to sensor-driven microcontrollers and dynamic logic.</p>
         </section>
 
-        <!-- TKS-style Interactive Timeline -->
-        <section id="timeline" class="glass-card">
+        <!-- Timeline Section -->
+        <section id="timeline" class="glass-card reveal-on-scroll">
             <h2><span>🚀</span> journey & milestones</h2>
             <div class="timeline">
 
@@ -47,7 +71,7 @@
                     <div class="timeline-content">
                         <span class="timeline-date">2026</span>
                         <h3>Wearable Bow Motion Sensing</h3>
-                        <p>Designed a low-profile, detachable motion-sensing hardware clip using the ESP32-C3 SuperMini and IMUs to capture expressive bowing gestures.</p>
+                        <p>Designing a low profile, detachable motion sensing hardware clip using the ESP32-C3 SuperMini and IMUs to capture expressive bowing gestures, so I can fix my posture.</p>
                     </div>
                 </div>
 
@@ -55,8 +79,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2026</span>
-                        <h3>Custom PCB Design</h3>
-                        <p>Engineered schematic logic and routed trace layouts in KiCad for custom multi-key controllers, optimizing signal paths and component placement.</p>
+                        <h3>FTC Team Captain</h3>
+                        <p>Still the start of my leadership journey, so i've got many things to learn at BIOBUZZ this year. Go follow our account at <a href="https://www.instagram.com/team32340/" target="_blank" style="color:#60a5fa;">instagram.com/team32340</a>!</p>
                     </div>
                 </div>
 
@@ -64,8 +88,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2025</span>
-                        <h3>Destination Imagination Global Finals</h3>
-                        <p>Competed globally, tackling high-level instant challenges with strict technical and creative constraints under timed conditions.</p>
+                        <h3>Destination Imagination Global Finals and Team Lead</h3>
+                        <p>Competed globally in the most competitive category, earning 1st as Best of Bay and 2nd throughout California. 11th at Global Finals.</p>
                     </div>
                 </div>
 
@@ -73,26 +97,51 @@
         </section>
 
         <!-- Sky Art Highlight -->
-        <section class="glass-card art-section">
-            <h2><span>🌙</span> midnight aesthetic</h2>
+        <section class="glass-card art-section reveal-on-scroll">
+            <h2><span>🌙</span> a cool pic i took for you to admire</h2>
             <div class="sky-frame">
-                <img src="night-sky.jpg" alt="Pixel Art Moon" class="tilted-img sky-img">
+                <img src="night-sky.jpg.png" alt="Pixel Art Moon" class="tilted-img sky-img">
             </div>
         </section>
 
         <!-- Connect Section -->
-        <section id="connect" class="glass-card">
+        <section id="connect" class="glass-card reveal-on-scroll">
             <h2><span>📫</span> let's connect</h2>
             <div class="social-grid">
-                <a href="aaryan.vishnupurikar@gmail.com" target="_blank" class="social-btn">Email ↗</a>
+                <a href="mailto:aaryan.vishnupurikar@gmail.com" class="social-btn">Email ↗</a>
                 <a href="https://github.com/aaryanv-midnightcrown" target="_blank" class="social-btn">GitHub ↗</a>
             </div>
         </section>
 
         <footer>
-            <p>built by aaryan • 2026</p>
+            <p>built by aaryan, ofc • 2026</p>
         </footer>
     </div>
 
+    <!-- Mouse Gradient & Scroll Reveal Logic -->
+    <script>
+        // Vercel-style Mouse Tracker
+        const bg = document.getElementById('interactive-bg');
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            bg.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.12), transparent 80%)`;
+        });
+
+        // Intersection Observer for Smooth Reveal on Scroll
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

@@ -8,14 +8,113 @@ body {
     padding: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #e2e8f0;
-    /* Day to Night Sky Vertical Gradient */
-    background: linear-gradient(180deg, #b0c4de 0%, #4a6fa5 25%, #1e293b 65%, #0f172a 100%);
+    /* Smooth vertical day-to-night sky gradient */
+    background: linear-gradient(180deg, #b0c4de 0%, #4a6fa5 30%, #1e293b 65%, #080d1a 100%);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
 }
 
-/* Floating Clouds for Depth */
+/* Mouse-Following Light Effect (Vercel Style) */
+#interactive-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    transition: background 0.1s ease-out;
+}
+
+/* Fullscreen Intro Hero Screen */
+.hero-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: #f1f5f9;
+    margin-top: 16px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.scroll-arrow {
+    animation: bounce 2s infinite;
+    font-size: 1.2rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+/* Flapping Birds (Top Daylight Gradient) */
+.bird {
+    position: absolute;
+    color: #ffffff;
+    font-size: 1.8rem;
+    z-index: 2;
+    opacity: 0.75;
+    pointer-events: none;
+    animation: flyAcross 18s linear infinite;
+}
+
+.bird span {
+    display: inline-block;
+    animation: flap 0.8s ease-in-out infinite alternate;
+}
+
+.bird-1 { top: 8%; left: -10%; animation-delay: 0s; }
+.bird-2 { top: 14%; left: -10%; animation-delay: 6s; }
+.bird-3 { top: 20%; left: -10%; animation-delay: 12s; }
+
+@keyframes flyAcross {
+    0% { transform: translateX(-10vw) translateY(0); }
+    50% { transform: translateX(50vw) translateY(-20px); }
+    100% { transform: translateX(110vw) translateY(10px); }
+}
+
+@keyframes flap {
+    0% { transform: scaleY(1) scaleX(1); }
+    100% { transform: scaleY(0.4) scaleX(1.3); }
+}
+
+/* Floating Clouds */
 .cloud {
     position: absolute;
     font-size: 4rem;
@@ -26,18 +125,52 @@ body {
     z-index: 1;
 }
 
-.cloud-1 { top: 8%; left: 5%; font-size: 5rem; }
-.cloud-2 { top: 22%; right: 8%; font-size: 3.5rem; }
-.cloud-3 { top: 48%; left: 10%; font-size: 4.5rem; opacity: 0.25; }
-.cloud-4 { top: 72%; right: 12%; font-size: 6rem; opacity: 0.15; }
+.cloud-1 { top: 18%; left: 5%; font-size: 5rem; }
+.cloud-2 { top: 32%; right: 8%; font-size: 3.5rem; }
+.cloud-3 { top: 58%; left: 10%; font-size: 4.5rem; opacity: 0.25; }
+.cloud-4 { top: 78%; right: 12%; font-size: 6rem; opacity: 0.15; }
 
-/* Page Layout Container */
+/* Shooting Stars (Bottom Night Sky) */
+.shooting-star {
+    position: absolute;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, #ffffff, transparent);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    transform: rotate(-35deg);
+}
+
+.star-1 { top: 65%; right: 15%; animation: shoot 5s infinite 1s; }
+.star-2 { top: 80%; right: 35%; animation: shoot 7s infinite 3s; }
+.star-3 { top: 90%; right: 10%; animation: shoot 6s infinite 5s; }
+
+@keyframes shoot {
+    0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 1; width: 120px; }
+    20% { transform: translateX(-300px) translateY(200px) rotate(-35deg); opacity: 0; width: 0px; }
+    100% { opacity: 0; }
+}
+
+/* Page Content Wrapper */
 .page-wrapper {
     position: relative;
     z-index: 2;
     max-width: 640px;
     margin: 0 auto;
-    padding: 50px 20px;
+    padding: 0 20px 60px 20px;
+}
+
+/* Smooth Reveal Effect on Scroll */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Glassmorphism Card Panels */
@@ -62,7 +195,7 @@ header {
     margin-bottom: 16px;
 }
 
-/* Image Tilt, Shadow, and Smooth Un-tilt on Hover */
+/* Image Tilt, Shadow, and Hover Animation */
 .tilted-img {
     border-radius: 20px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
@@ -131,7 +264,7 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* Typography inside Cards */
+/* Typography Inside Cards */
 h2 {
     font-size: 1.2rem;
     color: #ffffff;
@@ -149,7 +282,7 @@ p {
     margin: 0;
 }
 
-/* TKS-Style Vertical Timeline */
+/* Vertical Timeline */
 .timeline {
     position: relative;
     padding-left: 20px;
