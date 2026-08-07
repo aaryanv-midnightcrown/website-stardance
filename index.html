@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaryan | Builder & Tinkerer ✦</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- Mouse-Interactive Mesh Grid & Glow -->
     <div id="interactive-bg"></div>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="control-btn" title="Toggle Lighting Mode">🌙 Midnight</button>
+
+    <!-- Floating Terminal Trigger -->
+    <button id="terminal-toggle" class="control-btn terminal-btn" title="Open Interactive Terminal">&gt;_</button>
+
+    <!-- Interactive Terminal Modal -->
+    <div id="terminal-modal" class="terminal-overlay hidden">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <span>aaryan@stardance:~</span>
+                <button id="terminal-close">✕</button>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                <p>Welcome to Aaryan's Terminal v1.0.0</p>
+                <p>Type <span class="highlight">'help'</span> to see available commands.</p>
+            </div>
+            <div class="terminal-input-line">
+                <span class="prompt">&gt;</span>
+                <input type="text" id="terminal-input" placeholder="type a command..." autofocus autocomplete="off">
+            </div>
+        </div>
+    </div>
 
     <!-- Background Birds (Top Daylight Sky) -->
     <div class="bird bird-1"><span>✦</span></div>
@@ -30,6 +54,9 @@
 
     <!-- Hero Screen (Full Screen Intro Page) -->
     <section class="hero-screen">
+        <div class="status-pill">
+            <span class="status-dot"></span> Currently: Routing PCB traces in KiCad
+        </div>
         <h1 class="hero-title">hi. i'm aaryan.</h1>
         <p class="hero-subtitle">builder • tinkerer • hardware & software</p>
         <div class="scroll-indicator">
@@ -66,12 +93,39 @@
             <h2><span>🚀</span> journey & milestones</h2>
             <div class="timeline">
 
+                <!-- Timeline Item 1 with Hardware Spec Tabs -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2026</span>
                         <h3>Wearable Bow Motion Sensing</h3>
-                        <p>Designing a low profile, detachable motion sensing hardware clip using the ESP32-C3 SuperMini and IMUs to capture expressive bowing gestures, so I can fix my posture.</p>
+                        
+                        <!-- Interactive Hardware Spec Viewer Tabs -->
+                        <div class="spec-viewer">
+                            <div class="spec-tabs">
+                                <button class="spec-tab active" data-tab="tab-overview">Overview</button>
+                                <button class="spec-tab" data-tab="tab-specs">Hardware Specs</button>
+                                <button class="spec-tab" data-tab="tab-logic">Code Logic</button>
+                            </div>
+                            <div class="spec-content active" id="tab-overview">
+                                <p>Designing a low profile, detachable motion sensing hardware clip using the ESP32-C3 SuperMini and IMUs to capture expressive bowing gestures, so I can fix my posture.</p>
+                            </div>
+                            <div class="spec-content" id="tab-specs">
+                                <ul>
+                                    <li><strong>MCU:</strong> ESP32-C3 SuperMini (RISC-V)</li>
+                                    <li><strong>Sensors:</strong> 6-DOF IMU (Accelerometer + Gyro)</li>
+                                    <li><strong>Mount:</strong> Custom clip-on clip (Non-destructive)</li>
+                                </ul>
+                            </div>
+                            <div class="spec-content" id="tab-logic">
+                                <ul>
+                                    <li><strong>Sampling Rate:</strong> 100Hz Sensor Polling</li>
+                                    <li><strong>Filtering:</strong> Complementary filter for inclination angle</li>
+                                    <li><strong>Comms:</strong> Real-time BLE Telemetry streaming</li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -118,9 +172,9 @@
         </footer>
     </div>
 
-    <!-- Mouse Gradient & Scroll Reveal Logic -->
+    <!-- Scripts for Interactivity -->
     <script>
-        // Vercel-style Mouse Tracker
+        // 1. Vercel-style Mouse Tracker
         const bg = document.getElementById('interactive-bg');
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
@@ -128,20 +182,88 @@
             bg.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.12), transparent 80%)`;
         });
 
-        // Intersection Observer for Smooth Reveal on Scroll
-        const observerOptions = {
-            threshold: 0.15
-        };
-
+        // 2. Intersection Observer for Smooth Reveal on Scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.15 });
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // 3. Theme Toggle (Dusk vs. Midnight)
+        const themeBtn = document.getElementById('theme-toggle');
+        let isMidnight = false;
+        themeBtn.addEventListener('click', () => {
+            isMidnight = !isMidnight;
+            if (isMidnight) {
+                document.body.classList.add('midnight-mode');
+                themeBtn.textContent = '☀️ Dusk';
+            } else {
+                document.body.classList.remove('midnight-mode');
+                themeBtn.textContent = '🌙 Midnight';
+            }
+        });
+
+        // 4. Interactive Hardware Spec Tabs
+        const specTabs = document.querySelectorAll('.spec-tab');
+        specTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const parent = tab.closest('.spec-viewer');
+                parent.querySelectorAll('.spec-tab').forEach(t => t.classList.remove('active'));
+                parent.querySelectorAll('.spec-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-tab');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // 5. Interactive Terminal Modal & Logic
+        const termModal = document.getElementById('terminal-modal');
+        const termToggle = document.getElementById('terminal-toggle');
+        const termClose = document.getElementById('terminal-close');
+        const termInput = document.getElementById('terminal-input');
+        const termOutput = document.getElementById('terminal-output');
+
+        termToggle.addEventListener('click', () => {
+            termModal.classList.remove('hidden');
+            termInput.focus();
+        });
+
+        termClose.addEventListener('click', () => termModal.classList.add('hidden'));
+
+        termInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = termInput.value.trim().toLowerCase();
+                termInput.value = '';
+                
+                const line = document.createElement('p');
+                line.innerHTML = `<span class="prompt">&gt; ${cmd}</span>`;
+                termOutput.appendChild(line);
+
+                const response = document.createElement('p');
+                if (cmd === 'help') {
+                    response.innerHTML = 'Available commands: <span class="highlight">about</span>, <span class="highlight">projects</span>, <span class="highlight">email</span>, <span class="highlight">clear</span>';
+                } else if (cmd === 'about') {
+                    response.textContent = "Aaryan — Builder working on microcontrollers, robotics, and KiCad PCB designs.";
+                } else if (cmd === 'projects') {
+                    response.textContent = "1. Bow Motion Sensor | 2. FTC BioBuzz Robot | 3. Custom 6-Key PCB";
+                } else if (cmd === 'email') {
+                    response.textContent = "Contact me at: aaryan.vishnupurikar@gmail.com";
+                } else if (cmd === 'clear') {
+                    termOutput.innerHTML = '';
+                    return;
+                } else if (cmd !== '') {
+                    response.textContent = `Command not recognized: '${cmd}'. Type 'help' for a list of commands.`;
+                }
+                
+                if (cmd !== '') termOutput.appendChild(response);
+                termOutput.scrollTop = termOutput.scrollHeight;
+            }
+        });
     </script>
 </body>
 </html>

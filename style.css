@@ -1,4 +1,4 @@
-/* Color Palette & Smooth Scroll */
+/* Base Styling & Scroll Behavior */
 html {
     scroll-behavior: smooth;
 }
@@ -8,14 +8,19 @@ body {
     padding: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #e2e8f0;
-    /* Smooth vertical day-to-night sky gradient */
     background: linear-gradient(180deg, #b0c4de 0%, #4a6fa5 30%, #1e293b 65%, #080d1a 100%);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    transition: background 0.8s ease;
 }
 
-/* Mouse-Following Light Effect (Vercel Style) */
+/* Midnight Theme Modifier Class */
+body.midnight-mode {
+    background: linear-gradient(180deg, #0f172a 0%, #090d16 50%, #030712 100%);
+}
+
+/* Vercel Mouse Light Effect */
 #interactive-bg {
     position: fixed;
     top: 0;
@@ -27,7 +32,64 @@ body {
     transition: background 0.1s ease-out;
 }
 
-/* Fullscreen Intro Hero Screen */
+/* Control Buttons (Top-Right Theme Toggle & Floating Terminal) */
+.control-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    background: rgba(15, 23, 42, 0.7);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: #ffffff;
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+.terminal-btn {
+    top: auto;
+    bottom: 24px;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.1rem;
+    padding: 10px 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Status Pill */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+
+/* Fullscreen Hero Intro Screen */
 .hero-screen {
     min-height: 100vh;
     display: flex;
@@ -83,7 +145,7 @@ body {
     60% { transform: translateY(-4px); }
 }
 
-/* Flapping Birds (Top Daylight Gradient) */
+/* Animated Birds */
 .bird {
     position: absolute;
     color: #ffffff;
@@ -130,7 +192,7 @@ body {
 .cloud-3 { top: 58%; left: 10%; font-size: 4.5rem; opacity: 0.25; }
 .cloud-4 { top: 78%; right: 12%; font-size: 6rem; opacity: 0.15; }
 
-/* Shooting Stars (Bottom Night Sky) */
+/* Shooting Stars */
 .shooting-star {
     position: absolute;
     width: 120px;
@@ -152,7 +214,7 @@ body {
     100% { opacity: 0; }
 }
 
-/* Page Content Wrapper */
+/* Main Content Wrapper */
 .page-wrapper {
     position: relative;
     z-index: 2;
@@ -161,7 +223,7 @@ body {
     padding: 0 20px 60px 20px;
 }
 
-/* Smooth Reveal Effect on Scroll */
+/* Smooth Reveal Animations */
 .reveal-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -173,7 +235,7 @@ body {
     transform: translateY(0);
 }
 
-/* Glassmorphism Card Panels */
+/* Glassmorphism Cards */
 .glass-card {
     background: rgba(15, 23, 42, 0.55);
     backdrop-filter: blur(12px);
@@ -195,7 +257,6 @@ header {
     margin-bottom: 16px;
 }
 
-/* Image Tilt, Shadow, and Hover Animation */
 .tilted-img {
     border-radius: 20px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
@@ -319,9 +380,60 @@ p {
 }
 
 .timeline-content h3 {
-    margin: 4px 0 6px 0;
+    margin: 4px 0 10px 0;
     font-size: 1rem;
     color: #f1f5f9;
+}
+
+/* Interactive Hardware Spec Tabs */
+.spec-viewer {
+    margin-top: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spec-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.spec-tab {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.spec-tab.active, .spec-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.spec-content {
+    display: none;
+    font-size: 0.88rem;
+}
+
+.spec-content.active {
+    display: block;
+}
+
+.spec-content ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #cbd5e1;
+}
+
+.spec-content li {
+    margin-bottom: 4px;
 }
 
 /* Social Buttons */
@@ -348,6 +460,100 @@ p {
     background: #60a5fa;
     color: #0f172a;
     transform: translateY(-2px);
+}
+
+/* Interactive Terminal Overlay Modal */
+.terminal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.terminal-overlay.hidden {
+    display: none;
+}
+
+.terminal-box {
+    width: 100%;
+    max-width: 520px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    font-family: 'Fira Code', monospace;
+}
+
+.terminal-header {
+    background: #1e293b;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.terminal-header button {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.terminal-body {
+    padding: 16px;
+    height: 220px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #cbd5e1;
+}
+
+.terminal-body p {
+    font-family: 'Fira Code', monospace;
+    margin-bottom: 8px;
+    color: #e2e8f0;
+}
+
+.highlight {
+    color: #60a5fa;
+    font-weight: bold;
+}
+
+.prompt {
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    background: #090d16;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-input-line input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    width: 100%;
+    outline: none;
 }
 
 /* Footer */
