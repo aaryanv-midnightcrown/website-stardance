@@ -1,6 +1,6 @@
 # ✦ website-stardance
 
-My personal portfolio site built from scratch using HTML, CSS, and vanilla JavaScript. Designed with a custom day-night gradient theme, glassmorphism UI, and interactive animations.
+My personal portfolio site built from scratch using HTML, CSS, and vanilla JavaScript. Designed with a custom day to night gradient theme, glassmorphism UI, and background animations(stars).
 
 **Live Site:** https://aaryanv-midnightcrown.github.io/website-stardance/
 
@@ -16,18 +16,16 @@ My personal portfolio site built from scratch using HTML, CSS, and vanilla JavaS
 
 ## Features
 
-- **Dynamic Sky Theme:** Day-night gradient transition with nice animated background elements (clouds and shooting stars).
-- **Interactive Cursor Glow:** Mouse following spotlight effect built with lightweight JS.
-- **Tilted Media Cards:** Custom image cards with smooth 3D hover effects.
-- **Milestone Timeline:** Interactive timeline showing hardware, FTC robotics, and DI achievements.
-- **My Very Own Terminal:** A tiny version of a terminal specifically for my site used to navigating my website for comfortability. type 'help' to get started!
-- **Dusk/Midnight Toggle:** A simple dark mode/light mode toggle using lightweight JS.
+- **Interactive Cursor Glow:** Added a mouse background that follows you around.
+- **Photos pop-up** When you hover over an image, it straightens out and pops up.
+- **My Very Own Terminal:** A tiny version of a terminal i made for my site. use it to look at different parts of my website. type 'help' to get started!(its at the bottom right)
+- **Dusk/Midnight Toggle:** A simple dark mode/light mode toggle at the top right.
 
 ---
 
 ## AI Disclosure
 
-This project was built with assistance from AI tools (Gemini) used primarily as a debugging partner and design generator. gemini helped accelerate my css styling setup and syntax troubleshooting, while all project content, structure choices, and implementation were manually configured and used by me.
+I did use Gemini as a debugging partner and design generator. I still did all the project content, structure choices, and implementation myself.
 
 ---
 
