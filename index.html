@@ -1,288 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaryan | Hardware & Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border-radius: 0 !important; /* Forces sharp corners on all elements */
+        }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border-radius: 0 !important; /* Forces sharp corners on all elements */
-}
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent-color: #3fb950;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
 
-:root {
-    --bg-color: #0d1117;
-    --card-bg: #161b22;
-    --border-color: #30363d;
-    --text-primary: #f0f6fc;
-    --text-secondary: #8b949e;
-    --accent-color: #3fb950;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'Fira Code', monospace;
-}
+        body.light-mode {
+            --bg-color: #ffffff;
+            --card-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --text-primary: #1f2328;
+            --text-secondary: #656d76;
+            --accent-color: #0969da;
+        }
 
-body.light-mode {
-    --bg-color: #ffffff;
-    --card-bg: #f6f8fa;
-    --border-color: #d0d7de;
-    --text-primary: #1f2328;
-    --text-secondary: #656d76;
-    --accent-color: #0969da;
-}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    padding: 2rem 1rem;
-}
+        .page-container {
+            max-width: 780px;
+            margin: 0 auto;
+        }
 
-.page-container {
-    max-width: 780px;
-    margin: 0 auto;
-}
+        /* Typography & Headings */
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
 
-/* Typography & Headings */
-h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
 
-h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
-}
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
 
-h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-}
+        p {
+            color: var(--text-secondary);
+        }
 
-p {
-    color: var(--text-secondary);
-}
+        /* Header & Nav */
+        .site-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-/* Header & Nav */
-.site-header {
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-}
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-.header-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+        .tagline {
+            margin-top: 0.25rem;
+            font-size: 0.95rem;
+        }
 
-.tagline {
-    margin-top: 0.25rem;
-    font-size: 0.95rem;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
 
-.nav-links a {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
 
-.nav-links a:hover {
-    text-decoration: underline;
-}
+        .btn-toggle {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.6rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
 
-.btn-toggle {
-    background: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    padding: 0.25rem 0.6rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    cursor: pointer;
-}
+        .btn-toggle:hover {
+            background-color: var(--border-color);
+        }
 
-.btn-toggle:hover {
-    background-color: var(--border-color);
-}
+        /* Content Layout */
+        .content-block {
+            margin-bottom: 3rem;
+        }
 
-/* Content Layout */
-.content-block {
-    margin-bottom: 3rem;
-}
+        /* Timeline Cards */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
 
-/* Timeline Cards */
-.timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-}
+        .timeline-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+        }
 
-.timeline-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 1.25rem;
-}
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-}
+        .year-badge {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.1rem 0.4rem;
+            color: var(--text-secondary);
+        }
 
-.year-badge {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    padding: 0.1rem 0.4rem;
-    color: var(--text-secondary);
-}
+        /* Tabs inside project */
+        .spec-viewer {
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+        }
 
-/* Tabs inside project */
-.spec-viewer {
-    margin-top: 1rem;
-    border: 1px solid var(--border-color);
-}
+        .spec-tabs {
+            display: flex;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+        }
 
-.spec-tabs {
-    display: flex;
-    background-color: var(--bg-color);
-    border-bottom: 1px solid var(--border-color);
-}
+        .spec-tab {
+            background: transparent;
+            border: none;
+            border-right: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
 
-.spec-tab {
-    background: transparent;
-    border: none;
-    border-right: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.5rem 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    cursor: pointer;
-}
+        .spec-tab.active {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
 
-.spec-tab.active {
-    background-color: var(--card-bg);
-    color: var(--text-primary);
-    font-weight: 600;
-}
+        .spec-content {
+            display: none;
+            padding: 1rem;
+        }
 
-.spec-content {
-    display: none;
-    padding: 1rem;
-}
+        .spec-content.active {
+            display: block;
+        }
 
-.spec-content.active {
-    display: block;
-}
+        .spec-content ul {
+            list-style-position: inside;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
 
-.spec-content ul {
-    list-style-position: inside;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
+        /* Terminal Section */
+        .terminal-box {
+            background-color: #000000;
+            border: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
 
-/* Terminal Section */
-.terminal-box {
-    background-color: #000000;
-    border: 1px solid var(--border-color);
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-}
+        .terminal-header {
+            background-color: var(--card-bg);
+            padding: 0.4rem 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-.terminal-header {
-    background-color: var(--card-bg);
-    padding: 0.4rem 0.8rem;
-    border-bottom: 1px solid var(--border-color);
-}
+        .terminal-title {
+            color: var(--text-secondary);
+        }
 
-.terminal-title {
-    color: var(--text-secondary);
-}
+        .terminal-body {
+            padding: 1rem;
+            min-height: 120px;
+            max-height: 200px;
+            overflow-y: auto;
+            color: #e6edf3;
+        }
 
-.terminal-body {
-    padding: 1rem;
-    min-height: 120px;
-    max-height: 200px;
-    overflow-y: auto;
-    color: #e6edf3;
-}
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-top: 1px solid var(--border-color);
+            background-color: #050505;
+        }
 
-.terminal-input-line {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-top: 1px solid var(--border-color);
-    background-color: #050505;
-}
+        .prompt {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            font-weight: 600;
+        }
 
-.prompt {
-    color: var(--accent-color);
-    margin-right: 0.5rem;
-    font-weight: 600;
-}
+        .cmd-highlight {
+            color: var(--accent-color);
+        }
 
-.cmd-highlight {
-    color: var(--accent-color);
-}
+        .terminal-input-line input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            width: 100%;
+        }
 
-.terminal-input-line input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    width: 100%;
-}
+        /* Buttons and Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
 
-/* Buttons and Links */
-.social-links {
-    display: flex;
-    gap: 1rem;
-}
+        .btn-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
 
-.btn-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color);
-    background-color: var(--card-bg);
-    color: var(--text-primary);
-    text-decoration: none;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-}
+        .btn-link:hover {
+            border-color: var(--text-primary);
+        }
 
-.btn-link:hover {
-    border-color: var(--text-primary);
-}
+        .link-inline {
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
 
-.link-inline {
-    color: var(--accent-color);
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    text-decoration: none;
-}
+        .link-inline:hover {
+            text-decoration: underline;
+        }
 
-.link-inline:hover {
-    text-decoration: underline;
-}
+        /* Footer */
+        .site-footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
 
-/* Footer */
-.site-footer {
-    margin-top: 4rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-}
+    <div class="page-container">
+        
+        <!-- Header / Navigation -->
+        <header class="site-header">
+            <div class="header-main">
+                <div class="profile-meta">
+                    <h1>Aaryan</h1>
+                    <p class="tagline">Building microcontrollers, embedded logic, and software systems.</p>
+                </div>
+                <nav class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#connect">Connect</a>
+                    <button id="theme-toggle" class="btn-toggle" title="Toggle theme">Dark</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section id="about" class="content-block">
+            <h2>About</h2>
+            <p>I build hardware and software projects focused on solving physical and logic challenges—from custom PCB routing and microcontrollers to motion tracking algorithms.</p>
+        </section>
+
+        <!-- Timeline / Projects Section -->
+        <section id="projects" class="content-block">
+            <h2>Projects & Milestones</h2>
+            <div class="timeline">
+
+                <!-- Wearable Bow Sensing Project -->
+                <article class="timeline-card">
+                    <header class="card-header">
+                        <span class="year-badge">2026</span>
+                        <h3>Wearable Bow Motion Sensing</h3>
+                    </header>
+                    <div class="spec-viewer">
+                        <div class="spec-tabs">
+                            <button class="spec-tab active" data-tab="tab-overview">Overview</button>
+                            <button class="spec-tab" data-tab="tab-specs">Hardware Specs</button>
+                            <button class="spec-tab" data-tab="tab-logic">Code Logic</button>
+                        </div>
+                        <div class="spec-content active" id="tab-overview">
+                            <p>Designing a low-profile, detachable motion-sensing clip using an ESP32-C3 SuperMini and 6-DOF IMU to track real-time bowing gestures and technique.</p>
+                        </div>
+                        <div class="spec-content" id="tab-specs">
+                            <ul>
+                                <li><strong>MCU:</strong> ESP32-C3 SuperMini (RISC-V)</li>
+                                <li><strong>Sensors:</strong> 6-DOF IMU (Accelerometer + Gyroscope)</li>
+                                <li><strong>Mounting:</strong> Custom non-destructive clip design</li>
+                            </ul>
+                        </div>
+                        <div class="spec-content" id="tab-logic">
+                            <ul>
+                                <li><strong>Sampling Rate:</strong> 100Hz Sensor Polling</li>
+                                <li><strong>Filtering:</strong> Complementary filter for inclination estimation</li>
+                                <li><strong>Telemetry:</strong> Low-latency BLE packet streaming</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Robotics Captain -->
+                <article class="timeline-card">
+                    <header class="card-header">
+                        <span class="year-badge">2026</span>
+                        <h3>FTC Team Captain</h3>
+                    </header>
+                    <p>Leading software engineering and drive-team strategy at BioBuzz (Team #32340).</p>
+                    <a href="https://www.instagram.com/team32340/" target="_blank" rel="noopener noreferrer" class="link-inline">instagram.com/team32340 ↗</a>
+                </article>
+
+                <!-- Destination Imagination -->
+                <article class="timeline-card">
+                    <header class="card-header">
+                        <span class="year-badge">2025</span>
+                        <h3>Destination Imagination Lead</h3>
+                    </header>
+                    <p>Led team to 1st place in Bay Area regionals, 2nd in California state finals, and 11th at Global Finals in technical competition category.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Interactive Terminal Interface -->
+        <section class="content-block">
+            <h2>Terminal Interface</h2>
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span class="terminal-title">aaryan@stardance:~</span>
+                </div>
+                <div class="terminal-body" id="terminal-output">
+                    <p>Aaryan CLI v1.0.0</p>
+                    <p>Type <span class="cmd-highlight">'help'</span> for available commands.</p>
+                </div>
+                <div class="terminal-input-line">
+                    <span class="prompt">&gt;</span>
+                    <input type="text" id="terminal-input" placeholder="Type a command..." autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="connect" class="content-block">
+            <h2>Connect</h2>
+            <div class="social-links">
+                <a href="mailto:aaryan.vishnupurikar@gmail.com" class="btn-link">Email ↗</a>
+                <a href="https://github.com/aaryanv-midnightcrown" target="_blank" rel="noopener noreferrer" class="btn-link">GitHub ↗</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>&copy; 2026 Aaryan. Built clean.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Tab Switcher
+        document.querySelectorAll('.spec-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const parent = tab.closest('.spec-viewer');
+                parent.querySelectorAll('.spec-tab').forEach(t => t.classList.remove('active'));
+                parent.querySelectorAll('.spec-content').forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-tab');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            themeBtn.textContent = isLight ? 'Light' : 'Dark';
+        });
+
+        // Terminal Logic
+        const termInput = document.getElementById('terminal-input');
+        const termOutput = document.getElementById('terminal-output');
+
+        termInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = termInput.value.trim().toLowerCase();
+                termInput.value = '';
+
+                if (!cmd) return;
+
+                const line = document.createElement('p');
+                line.innerHTML = `<span class="prompt">&gt; ${cmd}</span>`;
+                termOutput.appendChild(line);
+
+                const response = document.createElement('p');
+                if (cmd === 'help') {
+                    response.innerHTML = 'Commands: <span class="cmd-highlight">about</span>, <span class="cmd-highlight">projects</span>, <span class="cmd-highlight">email</span>, <span class="cmd-highlight">clear</span>';
+                } else if (cmd === 'about') {
+                    response.textContent = "Aaryan — Working on microcontrollers, robotics, and KiCad PCB designs.";
+                } else if (cmd === 'projects') {
+                    response.textContent = "1. Wearable Bow Sensor | 2. FTC BioBuzz Robot | 3. Custom PCB Layouts";
+                } else if (cmd === 'email') {
+                    response.textContent = "Contact: aaryan.vishnupurikar@gmail.com";
+                } else if (cmd === 'clear') {
+                    termOutput.innerHTML = '';
+                    return;
+                } else {
+                    response.textContent = `Command not recognized: '${cmd}'. Type 'help' for available options.`;
+                }
+
+                termOutput.appendChild(response);
+                termOutput.scrollTop = termOutput.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
