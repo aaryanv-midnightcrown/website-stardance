@@ -1,269 +1,288 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaryan | Builder & Tinkerer ✦</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
 
-    <!-- Mouse-Interactive Mesh Grid & Glow -->
-    <div id="interactive-bg"></div>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 !important; /* Forces sharp corners on all elements */
+}
 
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="control-btn" title="Toggle Lighting Mode">🌙 Midnight</button>
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --text-primary: #f0f6fc;
+    --text-secondary: #8b949e;
+    --accent-color: #3fb950;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+}
 
-    <!-- Floating Terminal Trigger -->
-    <button id="terminal-toggle" class="control-btn terminal-btn" title="Open Interactive Terminal">&gt;_</button>
+body.light-mode {
+    --bg-color: #ffffff;
+    --card-bg: #f6f8fa;
+    --border-color: #d0d7de;
+    --text-primary: #1f2328;
+    --text-secondary: #656d76;
+    --accent-color: #0969da;
+}
 
-    <!-- Interactive Terminal Modal -->
-    <div id="terminal-modal" class="terminal-overlay hidden">
-        <div class="terminal-box">
-            <div class="terminal-header">
-                <span>aaryan@stardance:~</span>
-                <button id="terminal-close">✕</button>
-            </div>
-            <div class="terminal-body" id="terminal-output">
-                <p>Welcome to Aaryan's Terminal v1.0.0</p>
-                <p>Type <span class="highlight">'help'</span> to see available commands.</p>
-            </div>
-            <div class="terminal-input-line">
-                <span class="prompt">&gt;</span>
-                <input type="text" id="terminal-input" placeholder="type a command..." autofocus autocomplete="off">
-            </div>
-        </div>
-    </div>
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
 
-    <!-- Background Birds (Top Daylight Sky) -->
-    <div class="bird bird-1"><span>✦</span></div>
-    <div class="bird bird-2"><span>✦</span></div>
-    <div class="bird bird-3"><span>✦</span></div>
+.page-container {
+    max-width: 780px;
+    margin: 0 auto;
+}
 
-    <!-- Background Clouds -->
-    <div class="cloud cloud-1">☁️</div>
-    <div class="cloud cloud-2">☁️</div>
-    <div class="cloud cloud-3">☁️</div>
-    <div class="cloud cloud-4">☁️</div>
+/* Typography & Headings */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
 
-    <!-- Background Shooting Stars (Bottom Night Sky) -->
-    <div class="shooting-star star-1"></div>
-    <div class="shooting-star star-2"></div>
-    <div class="shooting-star star-3"></div>
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
 
-    <!-- Hero Screen (Full Screen Intro Page) -->
-    <section class="hero-screen">
-        <div class="status-pill">
-            <span class="status-dot"></span> Currently: Routing PCB traces in KiCad
-        </div>
-        <h1 class="hero-title">hi. i'm aaryan.</h1>
-        <p class="hero-subtitle">builder • tinkerer • hardware & software</p>
-        <div class="scroll-indicator">
-            <span>scroll to reveal</span>
-            <div class="scroll-arrow">↓</div>
-        </div>
-    </section>
+h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
 
-    <!-- Main Content Container -->
-    <div class="page-wrapper">
-        <!-- Header Section -->
-        <header class="reveal-on-scroll">
-            <div class="profile-frame">
-                <img src="avatar.jpg" alt="Aaryan's Avatar" class="tilted-img avatar-img">
-            </div>
-            <h1>hey, i'm aaryan ✨</h1>
-            <p class="tagline">building at the intersection of microcontrollers, machine learning & design</p>
-            
-            <nav class="nav-bar">
-                <a href="#about" class="nav-chip">about</a>
-                <a href="#timeline" class="nav-chip">timeline</a>
-                <a href="#connect" class="nav-chip">connect</a>
-            </nav>
-        </header>
+p {
+    color: var(--text-secondary);
+}
 
-        <!-- About Section -->
-        <section id="about" class="glass-card reveal-on-scroll">
-            <h2><span>⚡</span> focus & drive</h2>
-            <p>i build tech projects designed to solve real hardware and software challenges—from customized pcb layouts to sensor-driven microcontrollers and dynamic logic.</p>
-        </section>
+/* Header & Nav */
+.site-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
 
-        <!-- Timeline Section -->
-        <section id="timeline" class="glass-card reveal-on-scroll">
-            <h2><span>🚀</span> journey & milestones</h2>
-            <div class="timeline">
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
 
-                <!-- Timeline Item 1 with Hardware Spec Tabs -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2026</span>
-                        <h3>Wearable Bow Motion Sensing</h3>
-                        
-                        <!-- Interactive Hardware Spec Viewer Tabs -->
-                        <div class="spec-viewer">
-                            <div class="spec-tabs">
-                                <button class="spec-tab active" data-tab="tab-overview">Overview</button>
-                                <button class="spec-tab" data-tab="tab-specs">Hardware Specs</button>
-                                <button class="spec-tab" data-tab="tab-logic">Code Logic</button>
-                            </div>
-                            <div class="spec-content active" id="tab-overview">
-                                <p>Designing a low profile, detachable motion sensing hardware clip using the ESP32-C3 SuperMini and IMUs to capture expressive bowing gestures, so I can fix my posture.</p>
-                            </div>
-                            <div class="spec-content" id="tab-specs">
-                                <ul>
-                                    <li><strong>MCU:</strong> ESP32-C3 SuperMini (RISC-V)</li>
-                                    <li><strong>Sensors:</strong> 6-DOF IMU (Accelerometer + Gyro)</li>
-                                    <li><strong>Mount:</strong> Custom clip-on clip (Non-destructive)</li>
-                                </ul>
-                            </div>
-                            <div class="spec-content" id="tab-logic">
-                                <ul>
-                                    <li><strong>Sampling Rate:</strong> 100Hz Sensor Polling</li>
-                                    <li><strong>Filtering:</strong> Complementary filter for inclination angle</li>
-                                    <li><strong>Comms:</strong> Real-time BLE Telemetry streaming</li>
-                                </ul>
-                            </div>
-                        </div>
+.tagline {
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+}
 
-                    </div>
-                </div>
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2026</span>
-                        <h3>FTC Team Captain</h3>
-                        <p>Still the start of my leadership journey, so i've got many things to learn at BIOBUZZ this year. Go follow our account at <a href="https://www.instagram.com/team32340/" target="_blank" style="color:#60a5fa;">instagram.com/team32340</a>!</p>
-                    </div>
-                </div>
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2025</span>
-                        <h3>Destination Imagination Global Finals and Team Lead</h3>
-                        <p>Competed globally in the most competitive category, earning 1st as Best of Bay and 2nd throughout California. 11th at Global Finals.</p>
-                    </div>
-                </div>
+.nav-links a:hover {
+    text-decoration: underline;
+}
 
-            </div>
-        </section>
+.btn-toggle {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.25rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
 
-        <!-- Sky Art Highlight -->
-        <section class="glass-card art-section reveal-on-scroll">
-            <h2><span>🌙</span> a cool pic i took for you to admire</h2>
-            <div class="sky-frame">
-                <img src="night-sky.jpg.png" alt="Pixel Art Moon" class="tilted-img sky-img">
-            </div>
-        </section>
+.btn-toggle:hover {
+    background-color: var(--border-color);
+}
 
-        <!-- Connect Section -->
-        <section id="connect" class="glass-card reveal-on-scroll">
-            <h2><span>📫</span> let's connect</h2>
-            <div class="social-grid">
-                <a href="mailto:aaryan.vishnupurikar@gmail.com" class="social-btn">Email ↗</a>
-                <a href="https://github.com/aaryanv-midnightcrown" target="_blank" class="social-btn">GitHub ↗</a>
-            </div>
-        </section>
+/* Content Layout */
+.content-block {
+    margin-bottom: 3rem;
+}
 
-        <footer>
-            <p>built by aaryan, ofc • 2026</p>
-        </footer>
-    </div>
+/* Timeline Cards */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
 
-    <!-- Scripts for Interactivity -->
-    <script>
-        // 1. Vercel-style Mouse Tracker
-        const bg = document.getElementById('interactive-bg');
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            bg.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.12), transparent 80%)`;
-        });
+.timeline-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.25rem;
+}
 
-        // 2. Intersection Observer for Smooth Reveal on Scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.15 });
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
 
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+.year-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 0.1rem 0.4rem;
+    color: var(--text-secondary);
+}
 
-        // 3. Theme Toggle (Dusk vs. Midnight)
-        const themeBtn = document.getElementById('theme-toggle');
-        let isMidnight = false;
-        themeBtn.addEventListener('click', () => {
-            isMidnight = !isMidnight;
-            if (isMidnight) {
-                document.body.classList.add('midnight-mode');
-                themeBtn.textContent = '☀️ Dusk';
-            } else {
-                document.body.classList.remove('midnight-mode');
-                themeBtn.textContent = '🌙 Midnight';
-            }
-        });
+/* Tabs inside project */
+.spec-viewer {
+    margin-top: 1rem;
+    border: 1px solid var(--border-color);
+}
 
-        // 4. Interactive Hardware Spec Tabs
-        const specTabs = document.querySelectorAll('.spec-tab');
-        specTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const parent = tab.closest('.spec-viewer');
-                parent.querySelectorAll('.spec-tab').forEach(t => t.classList.remove('active'));
-                parent.querySelectorAll('.spec-content').forEach(c => c.classList.remove('active'));
-                
-                tab.classList.add('active');
-                const targetId = tab.getAttribute('data-tab');
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
+.spec-tabs {
+    display: flex;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
 
-        // 5. Interactive Terminal Modal & Logic
-        const termModal = document.getElementById('terminal-modal');
-        const termToggle = document.getElementById('terminal-toggle');
-        const termClose = document.getElementById('terminal-close');
-        const termInput = document.getElementById('terminal-input');
-        const termOutput = document.getElementById('terminal-output');
+.spec-tab {
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
 
-        termToggle.addEventListener('click', () => {
-            termModal.classList.remove('hidden');
-            termInput.focus();
-        });
+.spec-tab.active {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    font-weight: 600;
+}
 
-        termClose.addEventListener('click', () => termModal.classList.add('hidden'));
+.spec-content {
+    display: none;
+    padding: 1rem;
+}
 
-        termInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const cmd = termInput.value.trim().toLowerCase();
-                termInput.value = '';
-                
-                const line = document.createElement('p');
-                line.innerHTML = `<span class="prompt">&gt; ${cmd}</span>`;
-                termOutput.appendChild(line);
+.spec-content.active {
+    display: block;
+}
 
-                const response = document.createElement('p');
-                if (cmd === 'help') {
-                    response.innerHTML = 'Available commands: <span class="highlight">about</span>, <span class="highlight">projects</span>, <span class="highlight">email</span>, <span class="highlight">clear</span>';
-                } else if (cmd === 'about') {
-                    response.textContent = "Aaryan — Builder working on microcontrollers, robotics, and KiCad PCB designs.";
-                } else if (cmd === 'projects') {
-                    response.textContent = "1. Bow Motion Sensor | 2. FTC BioBuzz Robot | 3. Custom 6-Key PCB";
-                } else if (cmd === 'email') {
-                    response.textContent = "Contact me at: aaryan.vishnupurikar@gmail.com";
-                } else if (cmd === 'clear') {
-                    termOutput.innerHTML = '';
-                    return;
-                } else if (cmd !== '') {
-                    response.textContent = `Command not recognized: '${cmd}'. Type 'help' for a list of commands.`;
-                }
-                
-                if (cmd !== '') termOutput.appendChild(response);
-                termOutput.scrollTop = termOutput.scrollHeight;
-            }
-        });
-    </script>
-</body>
-</html>
+.spec-content ul {
+    list-style-position: inside;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Terminal Section */
+.terminal-box {
+    background-color: #000000;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.terminal-header {
+    background-color: var(--card-bg);
+    padding: 0.4rem 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.terminal-title {
+    color: var(--text-secondary);
+}
+
+.terminal-body {
+    padding: 1rem;
+    min-height: 120px;
+    max-height: 200px;
+    overflow-y: auto;
+    color: #e6edf3;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: #050505;
+}
+
+.prompt {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+    font-weight: 600;
+}
+
+.cmd-highlight {
+    color: var(--accent-color);
+}
+
+.terminal-input-line input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+/* Buttons and Links */
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.btn-link:hover {
+    border-color: var(--text-primary);
+}
+
+.link-inline {
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.link-inline:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.site-footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
